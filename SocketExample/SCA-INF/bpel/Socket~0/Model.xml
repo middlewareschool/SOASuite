@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="SocketProcess" targetNamespace="http://xmlns.oracle.com/helloworld_socket/SocketExample/SocketProcess" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/helloworld_socket/SocketExample/SocketProcess" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/socket/helloworld-socket/SocketExample/socketInbound" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns2="http://training.middlewareschool.com/socket/service" id="BpPrc0">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="socketInbound" partnerLinkType="ns1:InboundRequestReply_plt" myRole="InboundRequestReply_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="receive_InboundRequestReply_InputVariable" messageType="ns1:HelloRequest_msg_requsest"/>
+    <variable name="reply_InboundRequestReply_OutputVariable" messageType="ns1:HelloResponse_msg_reply"/>
+  </variables>
+  <sequence name="main" id="BpSeq0">
+    <receive name="receive" createInstance="yes" variable="receive_InboundRequestReply_InputVariable" partnerLink="socketInbound" portType="ns1:InboundRequestReply_ptt" operation="InboundRequestReply" id="BpRcv0"/>
+    <assign name="Assign_Output" id="BpAss0">
+      <copy>
+        <from variable="receive_InboundRequestReply_InputVariable" part="HelloRequest" query="/ns2:HelloRequest/ns2:input"/>
+        <to variable="reply_InboundRequestReply_OutputVariable" part="HelloResponse" query="/ns2:HelloResponse/ns2:result"/>
+      </copy>
+    </assign>
+    <reply name="reply" variable="reply_InboundRequestReply_OutputVariable" partnerLink="socketInbound" portType="ns1:InboundRequestReply_ptt" operation="InboundRequestReply" id="BpRpl0"/>
+  </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sat Apr 12 18:00:30 BST 2014
+  Author:  Amjad
+  Type: BPEL 1.1 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->

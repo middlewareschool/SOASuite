@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://training.middlewareschool.com/socket/service"
+            targetNamespace="http://training.middlewareschool.com/socket/service"
+            elementFormDefault="qualified">
+  <xsd:element name="dummy" type="xsd:string"/>
+</xsd:schema>

@@ -1,0 +1,25 @@
+<?binding.jca socketInbound_tcp.jca?>
+<wsdl:definitions name="socketInbound" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/socket/helloworld-socket/SocketExample/socketInbound" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/socket/helloworld-socket/SocketExample/socketInbound" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:msg_request_reply="http://training.middlewareschool.com/socket/service">
+    <plt:partnerLinkType name="InboundRequestReply_plt">
+        <plt:role name="InboundRequestReply_role">
+            <plt:portType name="tns:InboundRequestReply_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://training.middlewareschool.com/socket/service" schemaLocation="xsd/hello.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="HelloRequest_msg_requsest">
+        <wsdl:part name="HelloRequest" element="msg_request_reply:HelloRequest"/>
+    </wsdl:message>
+    <wsdl:message name="HelloResponse_msg_reply">
+        <wsdl:part name="HelloResponse" element="msg_request_reply:HelloResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="InboundRequestReply_ptt">
+        <wsdl:operation name="InboundRequestReply">
+            <wsdl:input message="tns:HelloRequest_msg_requsest"/>
+            <wsdl:output message="tns:HelloResponse_msg_reply"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

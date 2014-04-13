@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://training.middlewareschool.com/socket/service"
+            targetNamespace="http://training.middlewareschool.com/socket/service"
+            elementFormDefault="qualified">
+  <xsd:complexType name="HelloRequestType">
+    <xsd:sequence>
+      <xsd:element name="input" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="HelloResponseType">
+    <xsd:sequence>
+      <xsd:element name="result" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="HelloRequest" type="HelloRequestType"/>
+  <xsd:element name="HelloResponse" type="HelloResponseType"/>
+
+</xsd:schema>
